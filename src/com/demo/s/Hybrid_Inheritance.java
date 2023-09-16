@@ -2,38 +2,37 @@ package com.demo.s;
 
 interface Aa
 {
-	void printHi();
+	default void printHi()
+	{
+		System.out.println("Interface A.");
+	}
 }
 interface Bb extends Aa
 {
-	void printHello();
+	default void printHello()
+	{
+		System.out.println("Interface B.");
+	}
 }
+//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
 interface C extends Aa
 {
-	void printDetails();
+	default void printDetails()
+	{
+		System.out.println("Interface C.");
+	}
 }
-abstract class D implements C, Bb
+abstract class D 
 {
 	abstract void abc();
 }
 
-public class Hybrid_Inheritance extends D{
+public class Hybrid_Inheritance extends D implements C, Bb{
 	public void abc()
 	{
 		System.out.println("Abstract class D.");
 	}
-	public void printDetails()
-	{
-		System.out.println("Interface C.");
-	}
-	public void printHello() {
-		System.out.println("Interface B.");
-		
-	}
-	public void printHi()
-	{
-		System.out.println("Interface A.");
-	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Hybrid_Inheritance obj = new Hybrid_Inheritance();
@@ -41,7 +40,7 @@ public class Hybrid_Inheritance extends D{
 		obj.abc();
 		obj.printHello();
 		obj.printHi();
-
+//		C.printDetails();
 	}
 	
 
